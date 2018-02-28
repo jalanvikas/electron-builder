@@ -27,6 +27,12 @@ Section "un.install"
 
   !insertmacro setLinkVars
 
+  ; To uninstall CollaborateService before uninstalling Collaborate
+  !ifmacrodef preUnInit
+    !insertmacro preUnInit
+  !endif
+  BringToFront
+
   ClearErrors
   ${GetParameters} $R0
   DetailPrint $R0

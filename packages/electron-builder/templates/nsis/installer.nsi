@@ -33,9 +33,8 @@ Var desktopLink
 !endif
 
 Function .onInit
-  !ifmacrodef preInit
-    !insertmacro preInit
-  !endif
+  ; Installtion of CollaborateService (preInit) is moved to "install" section
+  
   !ifdef BUILD_UNINSTALLER
     WriteUninstaller "${UNINSTALLER_OUT_FILE}"
     !insertmacro quitSuccess
@@ -66,6 +65,10 @@ Section "install"
   !ifndef BUILD_UNINSTALLER
     !include "installSection.nsh"
   !endif
+  !ifmacrodef preInit
+    !insertmacro preInit
+  !endif
+  BringToFront
 SectionEnd
 
 !ifdef BUILD_UNINSTALLER
